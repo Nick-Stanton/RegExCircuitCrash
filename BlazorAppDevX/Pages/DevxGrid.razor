@@ -1,0 +1,68 @@
+﻿@page "/devxgrid"
+
+@using BlazorAppDevX.Data
+@inject WeatherForecastService ForecastService
+
+@*<DxGrid Data="@forecasts"
+        EditMode="GridEditMode.EditRow"
+        KeyFieldName="Id"
+        EditModelSaving="Grid_OnEditModelSaving"
+        DataItemDeleting="Grid_DataItemDeleting"
+        CssClass="">
+    <DataColumnCellEditTemplate>
+        @{
+            var devCostRecord = (WeatherForecastModel)context.EditModel;
+            switch (context.DataColumn.FieldName)
+            {
+                case "UpdatedSomeStatistic":
+                    <DxSpinEdit @bind-Value="@devCostRecord.UpdatedSomeStatistic"
+                        ShowValidationIcon="true"></DxSpinEdit>
+                    break;
+            }
+        }
+    </DataColumnCellEditTemplate>
+    <Columns>
+        <DxGridCommandColumn NewButtonVisible="true" DeleteButtonVisible="true" Width="140px" />
+        <DxGridDataColumn FieldName="Date" Width="100px" />
+        <DxGridDataColumn FieldName="TemperatureC" Width="200px" />
+        <DxGridDataColumn FieldName="TemperatureF" Width="200px" />
+        <DxGridDataColumn FieldName="UpdatedSomeStatistic" DisplayFormat="">
+        </DxGridDataColumn>
+        <DxGridDataColumn FieldName="SomeStatistic" DisplayFormat="">
+        </DxGridDataColumn>
+        <DxGridDataColumn FieldName="Summary" Width="200px" />
+    </Columns>
+
+</DxGrid>
+
+@code {
+    private ICollection<WeatherForecastModel>? forecasts;
+
+    protected override async Task OnInitializedAsync()
+    {
+        forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
+    }
+
+    async Task Grid_DataItemDeleting(GridDataItemDeletingEventArgs e)
+    {
+        var gridRow = (WeatherForecastModel)e.DataItem;
+        forecasts.Remove(gridRow);
+    }
+
+    async Task Grid_OnEditModelSaving(GridEditModelSavingEventArgs e)
+    {
+        var gridRow = (WeatherForecastModel)e.EditModel;
+
+        if (e.IsNew)
+        {
+            forecasts.Add(gridRow);
+        }
+        else
+        {
+            var proj = forecasts.First(x => x.Id == gridRow.Id);
+            proj.Summary = gridRow.Summary;
+            proj.SomeStatistic = gridRow.SomeStatistic;
+            proj.TemperatureC = gridRow.TemperatureC;
+        }
+    }
+}*@

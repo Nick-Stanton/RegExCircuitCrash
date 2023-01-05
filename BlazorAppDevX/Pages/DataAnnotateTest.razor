@@ -1,0 +1,44 @@
+﻿@page "/dataannotate"
+@using BlazorAppDevX.Data;
+
+<h3>DataAnnotateTest</h3>
+<EditForm Context="form" Model="@dataAnnotionsTest">
+    <DataAnnotationsValidator />
+@*    <DxMemo BindValueMode="BindValueMode.OnInput"
+            Text="@dataAnnotionsTest.PropertyWithRegXMessageCausingException"
+            TextChanged="@((string newValue) => OnPropertyWithRegXMessageCausingExceptionChanged(newValue))"
+            TextExpression="@(() => dataAnnotionsTest.PropertyWithRegXMessageCausingException)">
+    </DxMemo>
+    <ValidationMessage For="@(() => dataAnnotionsTest.PropertyWithRegXMessageCausingException)" />
+    <DxMemo BindValueMode="BindValueMode.OnInput"
+            Text="@dataAnnotionsTest.PropertyWithRegXMessageThatWorks"
+            TextChanged="@((string newValue) => OnPropertyWithRegXMessageThatWorksChange(newValue))"
+            TextExpression="@(() => dataAnnotionsTest.PropertyWithRegXMessageThatWorks)">
+    </DxMemo>*@
+
+    <MyInputText Value="@dataAnnotionsTest.PropertyWithRegXMessageCausingException"
+                 ValueChanged="@((string newValue) => OnPropertyWithRegXMessageCausingExceptionChanged(newValue))"
+                 ValueExpression="@(() => dataAnnotionsTest.PropertyWithRegXMessageCausingException)">
+
+    </MyInputText>
+    <ValidationMessage For="@(() => dataAnnotionsTest.PropertyWithRegXMessageCausingException)" />
+    <MyInputText Value="@dataAnnotionsTest.PropertyWithRegXMessageThatWorks"
+                 ValueChanged="@((string newValue) => OnPropertyWithRegXMessageThatWorksChange(newValue))"
+                 ValueExpression="@(() => dataAnnotionsTest.PropertyWithRegXMessageThatWorks)">
+    </MyInputText>
+
+</EditForm>
+
+
+@code {
+
+    private DataAnnotionsTest dataAnnotionsTest;
+
+    protected override async Task OnInitializedAsync() {
+        dataAnnotionsTest = new DataAnnotionsTest();
+    }
+
+    protected void OnPropertyWithRegXMessageCausingExceptionChanged(string text) => dataAnnotionsTest.PropertyWithRegXMessageCausingException = text;
+
+    protected void OnPropertyWithRegXMessageThatWorksChange(string text) => dataAnnotionsTest.PropertyWithRegXMessageThatWorks = text;
+}

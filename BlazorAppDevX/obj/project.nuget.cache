@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "6hAebJH13BG960ZXiRUSofIVZqAy6JgEisdAJsQcOdLreFjZIcBhf+LGWGOYIJjVGnj1jiyWHCgOsSQ4DYGkJg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\nickstanton\\testprojs\\ServerAnnotate\\BlazorAppDevX\\BlazorAppDevX.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\nickstanton\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.11\\microsoft.windowsdesktop.app.ref.6.0.11.nupkg.sha512",
+    "C:\\Users\\nickstanton\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.11\\microsoft.netcore.app.ref.6.0.11.nupkg.sha512",
+    "C:\\Users\\nickstanton\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.11\\microsoft.aspnetcore.app.ref.6.0.11.nupkg.sha512",
+    "C:\\Users\\nickstanton\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.11\\microsoft.netcore.app.host.win-x64.6.0.11.nupkg.sha512"
+  ],
+  "logs": []
+}
